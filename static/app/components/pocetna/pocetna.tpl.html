@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a ui-sref="home" class="navbar-brand d-flex align-items-center">
+    <img src="https://freeiconshop.com/wp-content/uploads/edd/book-open-flat.png" width="30" height="30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></img>
+    <strong style="color: greenyellow;">Book-online</strong>
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" ui-sref="home">Pocetna <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+
+    <form class="form-inline mt-2 mt-md-0">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item" ng-if="pctrl.ulogovan == null">
+        <a style="color:greenyellow" class="nav-link" ui-sref="login">Prijava</a>
+      </li>
+      <li class="nav-item" ng-if="pctrl.ulogovan == null">
+          <a style="color:red" class="nav-link" ui-sref="register">Registracija</a>
+      </li>
+
+      <li class="nav-item dropdown" ng-if="pctrl.ulogovan.admin == 1">
+        <a style="color:red; cursor: pointer;" class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" ui-sref="dodajAutora">Dodaj autora</a>
+          <a class="dropdown-item" ui-sref="autori">Autori</a>
+          <a class="dropdown-item" ui-sref="dodajKnjigu">Dodaj knjigu</a>
+        </div>
+      </li>
+
+      <li class="nav-item" ng-if="pctrl.ulogovan != null && pctrl.ulogovan.admin != 1">
+        <a style="color:white" class="nav-link" ui-sref="korpa">Korpa</a>
+      </li>
+
+      <li class="nav-item dropdown" ng-if="pctrl.ulogovan != null">
+        <a style="cursor: pointer; color: greenyellow" class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User: {{pctrl.ulogovan.korisnicko_ime}}</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" ui-sref="profil({id: pctrl.ulogovan['id']})">Profil</a>
+          <a class="dropdown-item" ui-sref="kupljeneKnjige({id: pctrl.ulogovan['id']})" ng-if="pctrl.ulogovan.admin != 1">Knjige</a>
+          <a class="dropdown-item" style="cursor: pointer;" ng-click="pctrl.logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+    </form>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" ng-repeat="p in pctrl.knjige">
+          <div class="card mb-4 shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="380" src={{p["slika"]}} onerror="this.src='https://freeiconshop.com/wp-content/uploads/edd/book-open-flat.png'" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><rect width="100%" height="100%" fill="#55595c"/></img>
+            <div class="card-body">
+              <p class="card-text">{{p["naziv"]}}</p>
+              <p class="card-text" ng-repeat="a in pctrl.autori" ng-if="a.id == p.autor_id">{{a.ime}} {{a.prezime}}</p>
+              <p class="card-text">{{p["opis"]}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-secondary" ng-if="pctrl.ulogovan.admin == 1" ui-sref="izmeniKnjigu({id: p['id']})">Edit</a>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" ng-if="pctrl.ulogovan.admin == 1" ng-click="pctrl.ukloniKnjigu(p['id'])">Delete</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" ng-if="pctrl.ulogovan.admin == 0" ng-click="pctrl.dodajUKorpu(p)">Dodaj u korpu</button>
+                </div>
+                <p class="text-muted"> <span style="text-decoration: underline;">{{p["cena"]}}</span> RSD</p>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+

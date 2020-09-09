@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Knjizara-online</title>
+    <link rel="icon" href="https://freeiconshop.com/wp-content/uploads/edd/book-open-flat.png">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-ui-router.min.js"></script>
+
+
+    <script src="app/app.js"></script>
+
+    <script src="app/components/pocetna/pocetnaCtrl.js"></script>
+    <script src="app/components/login/loginCtrl.js"></script>
+    <script src="app/components/register/registerCtrl.js"></script>
+    <script src="app/components/autorForm/autorFormCtrl.js"></script>
+    <script src="app/components/autori/autoriCtrl.js"></script>
+    <script src="app/components/knjigaForm/knjigaFormCtrl.js"></script>
+    <script src="app/components/profil/profilCtrl.js"></script>
+    <script src="app/components/korisnikIzmena/korisnikIzmenaCtrl.js"></script>
+    <script src="app/components/korpa/korpaCtrl.js"></script>
+    <script src="app/components/kupljeneKnjige/kupljeneKnjigeCtrl.js"></script>
+
+
+    <style>
+        body {
+        background-image: url('https://2.bp.blogspot.com/-TrfPaSrrcDs/XD930fgQjSI/AAAAAAAAAuM/_MaNsxds55cRCrD8Ee0SmZOU-4ltsUS4ACKgBGAs/w0/abstract-3d-14-4k.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        }
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+  
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+
+        ::-webkit-scrollbar {
+            background-color: #292b2c;
+            width: 15px;
+        }
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px black;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#292b2c;
+            border-radius: 10px;
+            box-shadow: 0 0 5px greenyellow;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: greenyellow;
+        }
+
+
+      </style>
+</head>
+
+<body ng-app="app">
+  <div class="container mt-5">
+      <!--
+          Komponenta ui-view predstavlja mesto na kojem ce biti
+          prikazivan sadrzaj na osnovu stanja rutiranja. Ukoliko
+          je stanje aktivno, sablon tog stanja zajedno sa umetnutim
+          kontrolerom ce biti prikazan unutar ovog elementa. Prilikom
+          promene stanja menja se sadrzaj ovog elementa.
+      -->
+      <ui-view></ui-view>
+  </div>
+</body>
+</html>

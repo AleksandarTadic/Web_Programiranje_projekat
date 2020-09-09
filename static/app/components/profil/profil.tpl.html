@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a ui-sref="home" class="navbar-brand d-flex align-items-center">
+    <img src="https://freeiconshop.com/wp-content/uploads/edd/book-open-flat.png" width="30" height="30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></img>
+    <strong style="color: greenyellow;">Book-online</strong>
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" ui-sref="home">Pocetna <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+
+    <form class="form-inline mt-2 mt-md-0">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item" ng-if="pctrl.ulogovan == null">
+        <a style="color:greenyellow" class="nav-link" ui-sref="login">Prijava</a>
+      </li>
+      <li class="nav-item" ng-if="pctrl.ulogovan == null">
+          <a style="color:red" class="nav-link" ui-sref="register">Registracija</a>
+      </li>
+
+      <li class="nav-item dropdown" ng-if="pctrl.ulogovan.admin == 1">
+        <a style="color:red; cursor: pointer;" class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" ui-sref="dodajAutora">Dodaj autora</a>
+          <a class="dropdown-item" ui-sref="autori">Autori</a>
+          <a class="dropdown-item" ui-sref="dodajKnjigu">Dodaj knjigu</a>
+        </div>
+      </li>
+
+      <li class="nav-item" ng-if="pctrl.ulogovan != null && pctrl.ulogovan.admin != 1">
+        <a style="color:white" class="nav-link" ui-sref="korpa">Korpa</a>
+      </li>
+
+      <li class="nav-item dropdown" ng-if="pctrl.ulogovan != null">
+        <a style="cursor: pointer; color: greenyellow" class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User: {{pctrl.ulogovan.korisnicko_ime}}</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" ui-sref="profil({id: pctrl.ulogovan['id']})">Profil</a>
+          <a class="dropdown-item" ui-sref="kupljeneKnjige({id: pctrl.ulogovan['id']})" ng-if="pctrl.ulogovan.admin != 1">Knjige</a>
+          <a class="dropdown-item" style="cursor: pointer;" ng-click="pctrl.logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+    </form>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jumbotron vertical-center">
+    <div class="container text-center">
+        <div class="d-flex align-items-center justify-content-center h-100">
+            <div class="d-flex flex-column"></div>
+                <form name="profil">
+                    <img class="mb-4" src="https://freeiconshop.com/wp-content/uploads/edd/book-open-flat.png" alt="" width="72" height="72">
+                    <h1>Profil</h1>
+                    <br>
+                    <div class="form-group">
+                        <h2>Korisnicko ime: <span style="color: red;" ng-bind="pctrl.korisnik.korisnicko_ime"></span></h2>
+                    </div>
+                    <div class="form-group">
+                        <h2>Ime: <span style="color: red;" ng-bind="pctrl.korisnik.ime"></span></h2>
+                    </div>
+                    <div class="form-group">
+                        <h2>Prezime: <span style="color: red;" ng-bind="pctrl.korisnik.prezime"></span></h2>
+                    </div>
+                    <div class="form-group">
+                        <a type="submit" class="btn btn-primary" style="color: white;" ui-sref="korisnikIzmena({id: pctrl.korisnik['id']})">Izmeni profil</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

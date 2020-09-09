@@ -1,0 +1,1 @@
+Potrebno je u bazi kreirati administratora tako sto se polje admin stavi na 1
